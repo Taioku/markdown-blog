@@ -81,6 +81,12 @@ def greet(name):
 - External links: [GitHub](https://github.com)
 - Images are supported (if referenced files exist)
 
+![LEMON MELON COOKIE](./images/image.png)
+
+### HTML tags
+
+<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/65gE7v1HqOfudsfdh2SuD8?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+
 ## Technical Features
 
 ### Performance
@@ -106,11 +112,3 @@ The application is built with customization in mind:
 - **CSS Variables**: Easy color scheme changes
 - **Modular JavaScript**: Easy to extend functionality
 - **Template Structure**: Simple HTML layout for modifications
-
-## Markdown images also work!
-
-![LEMON MELON COOKIE](./images/image.png)
-
-## HTML tags too
-
-<iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/65gE7v1HqOfudsfdh2SuD8?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
