@@ -2,7 +2,7 @@
 
 All notable changes to the Markdown File Reader project will be documented in this file.
 
-## [1.0.0] - 2025-08-14
+## [1.0.1] - 2025-08-14
 
 ### 🎉 Initial Release
 
@@ -33,23 +33,15 @@ This is the first version of the Markdown File Reader!
 
 ## Roadmap
 
-### Planned for v1.1.0
+### Planned
 - [ ] Search functionality across files
-- [ ] Dark mode theme toggle
+- [x] Dark mode theme toggle
 - [ ] File favorites/bookmarking
 - [ ] Print-friendly styles
-
-### Planned for v1.2.0
-- [ ] Table of contents generation
-- [ ] File editing capabilities
 - [ ] Export to PDF/HTML
 - [ ] Custom themes support
-
-### Planned for v2.0.0
 - [ ] Folder structure navigation
 - [ ] Multi-language support
-- [ ] Plugin system
-- [ ] Advanced search with filters
 
 ## Technical Notes
 
@@ -69,11 +61,13 @@ project/
 ├── index.html          # Main application file
 ├── styles.css          # Styling and layout
 ├── script.js           # Application logic
-└── src/               # Markdown files directory
-    ├── manifest.json   # Optional file list
-    └── *.md           # Your markdown files
+└── src/                # Markdown files directory
+|   ├── manifest.json   # Optional file list
+|   └── *.md            # Your markdown files
+└── image/              # Images files directory
 ```
 
 ---
 
-*Stay tuned for more updates and features!* 🚀
+*Stay tuned for more updates and features!*
+
