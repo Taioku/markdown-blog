@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown File Reader</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-layout">
+            <aside class="sidebar">
+                <div class="files-section">
+                    <div class="sidebar-header">
+                        <h3>Files</h3>
+                    </div>
+                    <nav id="file-list" class="file-list">
+                        <p>Loading markdown files...</p>
+                    </nav>
+                </div>
+            </aside>
+            
+            <main id="content" class="content">
+                <header class="content-header">
+                    <h1>Markdown File Reader</h1>
+                    <p>Click on any file to view its content</p>
+                </header>
+                
+                <div class="welcome">
+                    <h2>Welcome!</h2>
+                    <p>Select a markdown file from the left sidebar to view its content.</p>
+                </div>
+            </main>
+            
+            <aside class="index-sidebar">
+                <div class="content-index" id="content-index">
+                    <div class="index-header">
+                        <div class="index-header-content">
+                            <h4>Table of Contents</h4>
+                            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+                                <span class="theme-icon">🌙</span>
+                            </button>
+                        </div>
+                    </div>
+                    <nav id="toc" class="table-of-contents">
+                        <p class="no-content">Select a file to see contents</p>
+                    </nav>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
