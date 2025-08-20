@@ -74,6 +74,8 @@ class MarkdownReader {
         this.contentElement = document.getElementById('content');
         this.tocElement = document.getElementById('toc');
         this.markdownFiles = [];
+        this.currentFile = null;
+        this.storageKey = 'markdown-reader-last-file';
         
         // Default header content
         this.defaultHeader = {
@@ -87,6 +89,7 @@ class MarkdownReader {
     async init() {
         await this.loadMarkdownFiles();
         this.renderFileList();
+        this.loadLastOpenedFile();
     }
 
     async loadMarkdownFiles() {
@@ -157,8 +160,14 @@ class MarkdownReader {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 const filename = item.dataset.file;
-                this.loadAndRenderMarkdown(filename);
-                this.setActiveFileItem(item);
+                
+                // If clicking the same file that's already open, close it
+                if (this.currentFile === filename) {
+                    this.closeFile();
+                } else {
+                    this.loadAndRenderMarkdown(filename);
+                    this.setActiveFileItem(item);
+                }
             });
         });
     }
@@ -188,10 +197,16 @@ class MarkdownReader {
             this.renderMarkdownContent(htmlContent);
             this.generateTableOfContents();
             
+            // Update current file and save to localStorage
+            this.currentFile = filename;
+            this.saveLastOpenedFile(filename);
+            
         } catch (error) {
             console.error('Error loading markdown file:', error);
             this.showError(`Failed to load ${filename}. Make sure the file exists in the src folder.`);
             this.clearTableOfContents();
+            this.currentFile = null;
+            this.clearLastOpenedFile();
         }
     }
 
@@ -325,6 +340,56 @@ class MarkdownReader {
 
     createHeaderElement() {
         return this.createElement('div', 'content-header');
+    }
+
+    closeFile() {
+        this.currentFile = null;
+        this.clearActiveFileItem();
+        this.showWelcomeScreen();
+        this.clearTableOfContents();
+        this.clearLastOpenedFile();
+    }
+
+    clearActiveFileItem() {
+        this.fileListElement.querySelectorAll('.file-item').forEach(item => 
+            item.classList.remove('active')
+        );
+    }
+
+    showWelcomeScreen() {
+        this.clearContent();
+        this.setHeader(this.defaultHeader);
+        
+        const welcomeDiv = this.createElement('div', 'welcome');
+        welcomeDiv.innerHTML = `
+            <h2>Welcome!</h2>
+            <p>Select a markdown file from the left sidebar to view its content.</p>
+        `;
+        this.contentElement.appendChild(welcomeDiv);
+    }
+
+    saveLastOpenedFile(filename) {
+        localStorage.setItem(this.storageKey, filename);
+    }
+
+    getLastOpenedFile() {
+        return localStorage.getItem(this.storageKey);
+    }
+
+    clearLastOpenedFile() {
+        localStorage.removeItem(this.storageKey);
+    }
+
+    async loadLastOpenedFile() {
+        const lastFile = this.getLastOpenedFile();
+        if (lastFile && this.markdownFiles.includes(lastFile)) {
+            // Find the corresponding file item and simulate a click
+            const fileItem = this.fileListElement.querySelector(`[data-file="${lastFile}"]`);
+            if (fileItem) {
+                await this.loadAndRenderMarkdown(lastFile);
+                this.setActiveFileItem(fileItem);
+            }
+        }
     }
 }
 
